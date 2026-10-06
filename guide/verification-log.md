@@ -866,3 +866,48 @@ figure and a stop:
 
 Reported to Eisa on 29 Sep. The club decides whether to reword them. The
 planner has none, and `ui.js` fails on any.
+
+---
+
+## X. The QR and the printed address move to the club's own site — 6 Oct 2026
+
+Asked by Eisa on 6 Oct, the day the club's website moved to Cloudflare at
+isomclub.com: the PDF students download "shows them to the Vercel site. I
+don't want that to happen. I want it to take them to our site". The planner
+is part of the club's site at **https://isomclub.com/planner** (the website's
+build copies `public/index.html` there), so that is where the code and the
+link now go. The sheets still say what the code does (WHEN DO I GRADUATE): it
+opens the planner, as before, on the club's own address.
+
+Changed: `site.url` and `site.short` in `guide/data/courses.json`, and `URL` in
+`guide/mkqr.py`. The planner's share tags follow `site.url`, so
+`public/index.html` and the share card `public/og.png` (`node app/icons.js`)
+name the new address. isom-graduate.vercel.app is not redeployed: it keeps
+the last planner, so a sheet printed before today still opens it.
+
+### The code
+
+For the new address the mask the library picks by its penalty score read at
+420, 300, 220 and 140 px but not at 120 or 100, and `mkqr.py` refused it. All
+eight masks were drawn and read back: mask 3 reads at every size, as the old
+address did, so `mkqr.py` now names it (`MASK = 3`). Still level Q, 29
+modules, the same mark, quiet zone and size on the sheet.
+
+### Checks
+
+Built in CLAUDE.md's order on Linux with the pinned Chromium 1194. First, the
+unchanged checkout was rebuilt: `public/index.html` came out byte-identical to
+the committed one (`5e075f9c…`), so this machine builds the guide exactly.
+
+| check | result |
+|---|---|
+| `mkqr.py` | decodes at 420, 300, 220, 140, 120 and 100 px |
+| `verify.js` | all seven pages PASS |
+| `align-check.js` | one centre line, spread at most 0.02 px |
+| `qrcheck.py` | https://isomclub.com/planner read off all six finished PDFs at A2, A3 and A4 |
+| `npm test` | the rule checks and scenarios pass; `ui.js` ALL 28 SCREENS PASS |
+| the student copy (`pdf/…-phone.pdf`) | tap links on pages 2–7, all to https://isomclub.com/planner; the QR on pages 2–7 reads the same; the old address nowhere in its text; "isomclub.com/planner" printed on all six sheets |
+| old and new student copy, page by page at 60 dpi | the cover unchanged; on each sheet the only change is the code-and-address box in the bottom-left corner |
+
+`pdf/00-cover.pdf` is unchanged (the cover has no code). The six sheets and
+both booklets in `pdf/` are the new builds.

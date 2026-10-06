@@ -16,14 +16,18 @@ from qrcode.constants import ERROR_CORRECT_Q
 from PIL import Image, ImageDraw
 import cv2, numpy as np
 
-URL    = "https://isom-graduate.vercel.app"
+URL    = "https://isomclub.com/planner"
+# The mask, chosen by reading the code back, not by the library's penalty score: for this address the mask the
+# library picks (by score) stopped reading at 120 and 100 px; mask 3 reads at every size below, as the old
+# address did (6 Oct 2026). Every mask is standard QR; a phone reads any of them.
+MASK   = 3
 PX     = 24          # pixels per module
 QUIET  = 4           # quiet zone, in modules — never reduce this
 MAROON = (102, 0, 0)
 WHITE  = (255, 255, 255)
 LOGO   = 0.15        # the mark's height as a fraction of the code
 
-q = qrcode.QRCode(error_correction=ERROR_CORRECT_Q, box_size=1, border=0)
+q = qrcode.QRCode(error_correction=ERROR_CORRECT_Q, box_size=1, border=0, mask_pattern=MASK)
 q.add_data(URL); q.make(fit=True)
 m = q.get_matrix(); n = len(m)
 size = (n + QUIET * 2) * PX
