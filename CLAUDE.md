@@ -72,7 +72,9 @@ low quality.
 
 Publishing: `DEPLOY.md`. The Vercel project and the domain already exist.
 
-The repo lives at **https://github.com/eisaalbader/isom-graduate** (private) and
+The repo lives at **https://github.com/isomclubit/isom-graduate** (public; the
+club's own GitHub account since 6 Oct 2026, moved from `eisaalbader`, which
+stays on it as a collaborator) and
 on the club's machine at `C:\Users\user\Desktop\isom-guide\isom-graduate`,
 with `origin` set and `main` tracking it. Push from there: a cloud session can
 clone it but not push to it (checked 23 Sep).

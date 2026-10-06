@@ -11,7 +11,8 @@ publish anything**: the Vercel project is not connected to the repo.
   six sheets encodes
 - Vercel Authentication and password protection are **off**, so the page is
   public
-- Repo: https://github.com/eisaalbader/isom-graduate (private), cloned at
+- Repo: https://github.com/isomclubit/isom-graduate (public; the club's own
+  GitHub account since 6 Oct 2026, moved from `eisaalbader`), cloned at
   `C:\Users\user\Desktop\isom-guide\isom-graduate` with `origin` set and
   `main` tracking it
 
@@ -26,9 +27,11 @@ to the committed files.
 
 On 24 Sep the CLI on the club's machine answered `Error: Not authorized`: its
 sign-in had expired. Run `npx vercel login` (it opens a browser) before the
-next CLI deploy. The Vercel GitHub app can read the repo, so a production
-deployment can also be made straight from a commit on `main`, which is how
-0e4ba57, 32437a4 and 8a92de5 went out.
+next CLI deploy. Until 6 Oct the Vercel GitHub app could read the repo, so a
+production deployment could also be made straight from a commit on `main`,
+which is how 0e4ba57, 32437a4 and 8a92de5 went out. Since the repo moved to the
+club's GitHub account, that app (installed on `eisaalbader` only) cannot read
+it: deploy with the CLI.
 
 ## Publishing a change
 
